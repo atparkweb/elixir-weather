@@ -18,7 +18,6 @@ defmodule Weather.XML do
     Enum.find(children, fn child -> xmlElement(child, :name) == name end)
   end
   
-  # Bad argument error here...
   def get_text(element) do
     Logger.info "Get text..."
     Enum.find(xmlElement(element, :content), fn child -> 
