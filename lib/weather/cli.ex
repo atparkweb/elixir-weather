@@ -31,9 +31,11 @@ defmodule Weather.CLI do
     { :ok, body } = Weather.API.fetch(location)
 
     body
+    |> (&Weather.IO.xml_to_file("test", &1)).()
     |> parse_xml
     |> XML.get_child_elements
-    |> Enum.map(fn title -> XML.get_child_elements(title) |> XML.find_child(:body) |> XML.get_text end)
+    |> XML.find_child(:location)
+    |> XML.get_text
     |> IO.inspect
   end
 
