@@ -1,4 +1,7 @@
 defmodule Weather.CLI do
+  @modledoc """
+  Main entry point and command line interface for application
+  """
   require Logger
 
   alias Weather.XML, as: XML
@@ -9,6 +12,9 @@ defmodule Weather.CLI do
     |> process
   end
   
+  @doc """
+  Return location code argument otherwise return :help
+  """
   def parse_args(argv) do
     parsed = OptionParser.parse(argv, switches: [ help: :boolean ], aliases: [ h: :help ])
     
@@ -21,31 +27,28 @@ defmodule Weather.CLI do
     end
   end
   
+  @doc """
+  Display message about usage if --help or -h flag is present
+  """
   def process(:help) do
     IO.puts """
     usage: weather <location_code>
     location_code should be NWA 4-letter location code
     """
   end
+  @doc """
+  Get the weather data for <location> from Weather service API.
+  Parse the XML from response string
+  """
   def process(location) do
     { :ok, body } = Weather.API.fetch(location)
 
     body
     |> (&Weather.IO.xml_to_file("test", &1)).()
-    |> parse_xml
+    |> XML.parse
     |> XML.get_child_elements
     |> XML.find_child(:location)
     |> XML.get_text
     |> IO.inspect
-  end
-
-  @doc """
-  Use underlying Erlang XML parsing library (xmerl)
-  to parse XML content
-  """
-  def parse_xml(str) do
-    Logger.info "Parsing XML with xmerl..."
-    { doc, [] } = str |> :binary.bin_to_list() |> :xmerl_scan.string()
-    doc
   end
 end
