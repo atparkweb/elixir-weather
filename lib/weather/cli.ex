@@ -1,5 +1,5 @@
 defmodule Weather.CLI do
-  @modledoc """
+  @moduledoc """
   Main entry point and command line interface for application
   """
   require Logger
