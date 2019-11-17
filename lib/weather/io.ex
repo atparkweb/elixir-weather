@@ -24,7 +24,7 @@ defmodule Weather.IO do
   @doc """
   Write contents to an XML file at <dest>/<name>.xml
   """
-  defp save_xml(name, contents, dest) do
+  def save_xml(name, contents, dest) do
     IO.puts "Name: #{name}"
     :ok = File.write("#{dest}/#{name}.xml", contents)
   end
