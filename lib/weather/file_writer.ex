@@ -1,6 +1,6 @@
-defmodule Weather.IO do
+defmodule Weather.FileWriter do
   @moduledoc """
-  Read/write functions for XML data
+  Read/write XML data to file
   """
   require Logger
 
