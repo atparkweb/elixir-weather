@@ -32,7 +32,6 @@ defmodule Weather.XML do
   Get the text content of <element>
   """
   def get_text(element) do
-    Logger.info "Get text..."
     Enum.find(xmlElement(element, :content), fn child -> 
       Record.is_record(child, :xmlText)
     end)
