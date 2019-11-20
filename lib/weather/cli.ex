@@ -4,7 +4,10 @@ defmodule Weather.CLI do
   """
   require Logger
 
-  alias Weather.XML, as: XML
+  alias Weather.XML,        as: XML
+  alias Weather.API,        as: API
+  alias Weather.Formatter,  as: Formatter
+  alias Weather.FileWriter, as: FileWriter
 
   def main(argv) do
     argv 
@@ -41,14 +44,12 @@ defmodule Weather.CLI do
   Parse the XML from response string
   """
   def process(location) do
-    { :ok, body } = Weather.API.fetch(location)
+    { :ok, body } = API.fetch(location)
 
     body
-    |> (&Weather.IO.xml_to_file("test", &1)).()
-    |> XML.parse
-    |> XML.get_child_elements
-    |> XML.find_child(:location)
-    |> XML.get_text
-    |> IO.inspect
+      |> (&FileWriter.xml_to_file("test", &1)).()
+      |> XML.parse
+      |> XML.get_child_elements
+      |> Formatter.format
   end
 end
