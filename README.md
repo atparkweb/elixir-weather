@@ -1,6 +1,6 @@
 # Weather
 
-**TODO: Add description**
+Fetches XML weather data for a location and prints it to the command line.
 
 ## Installation
 
