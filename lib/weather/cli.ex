@@ -47,7 +47,7 @@ defmodule Weather.CLI do
     { :ok, body } = API.fetch(location)
 
     body
-      |> (&FileWriter.xml_to_file("test", &1)).()
+      |> (&FileWriter.xml_to_file(location, &1)).()
       |> XML.parse
       |> XML.get_child_elements
       |> Formatter.format

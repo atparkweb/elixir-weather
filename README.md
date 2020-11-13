@@ -15,6 +15,21 @@ def deps do
 end
 ```
 
+## Development
+
+### Requirements
+
+* [elixir/mix/erlang](https://elixir-lang.org/install.html)
+* [hex](https://hex.pm/docs/usage)
+* [erlang-xmerl](http://erlang.org/doc/man/xmerl.html)
+
+### Commands
+
+* Test:    `mix test`
+* Compile: `mix compile`
+
+### Documentation
+
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/weather](https://hexdocs.pm/weather).
